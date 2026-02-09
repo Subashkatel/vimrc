@@ -161,6 +161,14 @@ Plug 'Yggdroot/indentLine'             " Show thin vertical lines at each indent
 Plug 'preservim/tagbar'                " Class/function outline sidebar
                                        " Requires 'ctags' (usually on clusters)
 
+" --- LaTeX ---
+Plug 'lervag/vimtex'                   " LaTeX editing, compiling, and previewing
+
+" --- Tmux Integration ---
+Plug 'christoomey/vim-tmux-navigator'  " Move between Vim splits and tmux panes
+                                       " with Ctrl+h/j/k/l seamlessly
+Plug 'preservim/vimux'                 " Send commands from Vim to a tmux pane
+
 call plug#end()
 
 endif  " end vim-plug check
@@ -278,6 +286,23 @@ let g:better_whitespace_enabled = 1
 let g:strip_whitespace_on_save = 1      " Auto-strip trailing whitespace on save
 let g:strip_whitespace_confirm = 0      " Don't ask for confirmation
 
+" --- Vimtex (LaTeX) ---
+let g:vimtex_enabled = 1
+let g:tex_flavor = 'latex'              " Default .tex files to LaTeX (not plain TeX)
+let g:vimtex_view_method = 'general'    " Use generic viewer (no GUI needed on cluster)
+let g:vimtex_compiler_method = 'latexmk' " Use latexmk for compilation
+let g:vimtex_quickfix_mode = 2          " Open quickfix on errors, don't auto-focus
+
+" --- Vim-Tmux-Navigator ---
+" Ctrl+h/j/k/l moves between Vim splits AND tmux panes seamlessly.
+" No extra config needed — the plugin handles the keybinds automatically.
+" If you want to disable the default mappings and set your own:
+" let g:tmux_navigator_no_mappings = 1
+
+" --- Vimux (send commands to tmux pane) ---
+let g:VimuxHeight = '30'               " Tmux runner pane height (percent)
+let g:VimuxOrientation = 'v'           " Open runner pane below (vertical split)
+
 " ---------------------------------------------------------------------------
 " 6. LEADER KEY
 " ---------------------------------------------------------------------------
@@ -361,6 +386,28 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " --- Tagbar ---
 " Space + t to toggle the tagbar (class/function outline)
 nnoremap <leader>t :TagbarToggle<CR>
+
+" --- Vimux (send commands to a tmux pane) ---
+" Space + vp to prompt for a command and run it in a tmux pane
+nnoremap <leader>vp :VimuxPromptCommand<CR>
+" Space + vl to re-run the last vimux command
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
+" Space + vs to submit a SLURM job for the current file
+nnoremap <leader>vs :VimuxRunCommand("sbatch " . expand("%"))<CR>
+" Space + vr to run the current Python file in the tmux pane
+nnoremap <leader>vr :VimuxRunCommand("python " . expand("%"))<CR>
+" Space + vc to close the vimux runner pane
+nnoremap <leader>vc :VimuxCloseRunner<CR>
+" Space + vi to inspect (scroll through) the runner pane
+nnoremap <leader>vi :VimuxInspectRunner<CR>
+
+" --- Vimtex (LaTeX) ---
+" Vimtex uses <leader>l as its prefix by default:
+"   Space + ll  to start/stop continuous compilation
+"   Space + lv  to view the compiled PDF
+"   Space + le  to show errors/warnings
+"   Space + lc  to clean auxiliary files
+"   Space + lt  to toggle table of contents
 
 " --- Buffer Management ---
 " Space + bn for next buffer, Space + bp for previous buffer
@@ -468,6 +515,12 @@ augroup lang_settings
 
     " --- YAML ---
     autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+    " --- LaTeX ---
+    autocmd FileType tex setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType tex setlocal expandtab
+    autocmd FileType tex setlocal wrap linebreak   " Wrap lines for prose
+    autocmd FileType tex setlocal spell            " Enable spellcheck
 
 augroup END
 

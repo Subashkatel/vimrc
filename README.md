@@ -24,6 +24,9 @@ A minimal, well-documented Vim 8+ configuration for scientific computing on Linu
 | vim-better-whitespace | Highlight and strip trailing whitespace |
 | indentLine | Vertical indent guide lines |
 | tagbar | Function and class outline sidebar (requires ctags) |
+| vimtex | LaTeX editing, compiling, and PDF viewing |
+| vim-tmux-navigator | Move between Vim splits and tmux panes with Ctrl+h/j/k/l |
+| vimux | Send commands from Vim to a tmux pane |
 
 ---
 
@@ -107,6 +110,31 @@ Leader key is `Space`.
 | `Space cc` | C++ | Compile with g++ and run |
 | `Space cc` | CUDA | Compile with nvcc and run |
 | `Space cq` | cuDAQ | Compile with nvq++ and run |
+
+### Tmux Integration
+
+| Keys | Action |
+|------|--------|
+| `Ctrl+h` | Move to tmux pane / Vim split on the left |
+| `Ctrl+j` | Move to tmux pane / Vim split below |
+| `Ctrl+k` | Move to tmux pane / Vim split above |
+| `Ctrl+l` | Move to tmux pane / Vim split on the right |
+| `Space vp` | Prompt for a command and run it in a tmux pane |
+| `Space vl` | Re-run the last vimux command |
+| `Space vs` | Submit current file with sbatch |
+| `Space vr` | Run current file with python |
+| `Space vc` | Close the vimux runner pane |
+| `Space vi` | Scroll through the runner pane output |
+
+### LaTeX (vimtex)
+
+| Keys | Action |
+|------|--------|
+| `Space ll` | Start/stop continuous compilation |
+| `Space lv` | View compiled PDF |
+| `Space le` | Show errors and warnings |
+| `Space lc` | Clean auxiliary files |
+| `Space lt` | Toggle table of contents |
 
 ### Utility
 
