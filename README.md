@@ -1,7 +1,6 @@
-# Vim Configuration for HPC Cluster Development
+# Vim Configuration Clusters
 
-A minimal, well-documented Vim 8+ configuration for scientific computing on Linux HPC clusters. Supports Python, C, C++, CUDA, cuDAQ, and Qiskit development.
-
+Vim config for clusters
 ---
 
 ## Plugins
