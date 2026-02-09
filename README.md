@@ -121,6 +121,29 @@ Leader key is `Space`.
 
 ---
 
+## Setup
+
+```bash
+# Clone your repo
+git clone https://github.com/YOUR_USERNAME/vimrc.git ~/vimrc
+
+# Symlink the config
+ln -sf ~/vimrc/.vimrc ~/.vimrc
+
+# Create the undo directory
+mkdir -p ~/.vim/undodir
+
+# Install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Open vim and install plugins
+vim -c "PlugInstall"
+# When finished, press Esc then type :qa and hit Enter to exit
+```
+
+---
+
 ## File Structure
 
 ```
