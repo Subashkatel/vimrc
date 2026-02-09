@@ -1,6 +1,4 @@
 # Vim Configuration Clusters
-
-Vim config for clusters
 ---
 
 ## Plugins
